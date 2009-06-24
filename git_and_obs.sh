@@ -1,15 +1,47 @@
 #!/bin/bash
 
+packages="
+ anerley
+ bickley
+ bisho
+ bognor-regis
+ ccss
+ clutter
+ clutter-box2d
+ clutter-gst
+ clutter-gtk
+ clutter-mozembed
+ dalston
+ hornsey
+ jana
+ libmhs
+ librest
+ moblin-gtk-engine
+ moblin-web-browser
+ mojito
+ mutter
+ mutter-moblin
+ mux
+ nbtk
+ twitter-glib
+"
+exception="
+ moblin-cursor-theme
+ moblin-icon-theme
+ moblin-menus
+"
+# moblin-user-skel
+
 export PATH=$PATH:.
 
-LOG_DIR=/tmp/git_and_obs.$(date +%F-%H%M)
+LOG_DIR=/tmp/obs/git_and_obs.$(date +%F-%H%M)
 LOG_FILE=$LOG_DIR/git_and_obs.log
 
 # NOTE: Change this variable if git2obs uses a different log path.
 GIT2OBS_LOG_DIR=/tmp
 
 # Show usage.
-function show_usage {
+show_usage (){
 	echo "Usage:"
 	echo "$0"
 	echo "  update    Update all git repos"
@@ -19,8 +51,8 @@ function show_usage {
 }
 
 # Update upstream git repos.
-function update_git {
-	for git_dir in $packages
+update_git (){
+	for git_dir in $packages $exception
 	do
 		# Go to the git repo dir
 		pushd $git_dir > /dev/null
@@ -37,8 +69,9 @@ function update_git {
 }
 
 # Commit git repos to obs
-function commit_git_to_obs {
-	\rm $GIT2OBS_LOG_DIR/git2obs.* 
+# TODO exception handling 
+commit_git_to_obs (){
+	rm -f $GIT2OBS_LOG_DIR/git2obs.* 
 	for pack in $packages
 	do
 		# git2obs
@@ -51,20 +84,12 @@ function commit_git_to_obs {
 		echo "" | tee -a $LOG_FILE
 
 		# Re-locate git2obs's log to $LOG_DIR
-		mv GIT2OBS_LOG_DIR/git2obs.* $LOG_DIR/$pack.log
+		mv $GIT2OBS_LOG_DIR/git2obs.* $LOG_DIR/$pack.log
 	done
 }
 
 # Show usage if no parameter.
 [ -z $1 ] && show_usage
-
-# Check package_list.txt
-if [ ! -f package_list.txt ]
-then
-	echo "Please place package_list.txt in this directory."
-	exit
-fi
-packages=$(cat package_list.txt)
 
 # check the availability of git2obs
 git2obs &> /dev/null
@@ -97,7 +122,9 @@ help)
 	;;
 esac	
 
-if [ -z $FAILED_PACKAGE ]
+# Print failed packages
+# TODO Send a e-mail if there is any failed package.
+if [ ! -z $FAILED_PACKAGE ]
 then
 	echo "Failed pakcages:" >> $LOG_FILE
 	echo $FAILED_PACKAGE >> $LOG_FILE
