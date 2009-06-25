@@ -11,6 +11,7 @@ packages="
  clutter-gst
  clutter-gtk
  clutter-mozembed
+ clutter-imcontext
  dalston
  hornsey
  jana

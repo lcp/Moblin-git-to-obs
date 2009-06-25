@@ -11,6 +11,7 @@ repos="
        git://git.clutter-project.org/clutter-gst.git
        git://git.clutter-project.org/clutter-gtk.git
        git://git.clutter-project.org/clutter-mozembed.git
+       git://git.moblin.org/clutter-imcontext
        git://git.moblin.org/dalston.git
        git://git.moblin.org/hornsey.git
        git://git.gnome.org/jana
