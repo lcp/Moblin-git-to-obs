@@ -7,7 +7,6 @@ packages="
  bognor-regis
  ccss
  clutter
- clutter-box2d
  clutter-gst
  clutter-gtk
  clutter-mozembed
@@ -31,6 +30,8 @@ exception="
  moblin-icon-theme
  moblin-menus
 "
+# TODO re-add clutter-box2d once upstream fixes aclocal problem
+# clutter-box2d
 # moblin-user-skel
 
 export PATH=$PATH:.
@@ -56,7 +57,7 @@ update_git (){
 	for git_dir in $packages $exception
 	do
 		# Go to the git repo dir
-		pushd $git_dir > /dev/null
+		pushd $git_dir > /dev/null 2>&1
 
 		# Grab from upstream
 		echo "== Update $git_dir ==" | tee -a $LOG_FILE
@@ -65,7 +66,7 @@ update_git (){
 		echo "" | tee -a $LOG_FILE
 
 		# Leave the git repo dir
-		popd > /dev/null 
+		popd > /dev/null 2>&1
 	done
 }
 
@@ -93,7 +94,7 @@ commit_git_to_obs (){
 [ -z $1 ] && show_usage
 
 # check the availability of git2obs
-git2obs &> /dev/null
+git2obs > /dev/null 2>&1 
 if [ $? -ne 1 ]
 then
 	echo "git2obs not found!"
@@ -125,7 +126,7 @@ esac
 
 # Print failed packages
 # TODO Send a e-mail if there is any failed package.
-if [ ! -z $FAILED_PACKAGE ]
+if [ ! -z "$FAILED_PACKAGE" ]
 then
 	echo "Failed pakcages:" >> $LOG_FILE
 	echo $FAILED_PACKAGE >> $LOG_FILE
