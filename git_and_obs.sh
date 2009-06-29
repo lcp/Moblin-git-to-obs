@@ -19,6 +19,7 @@ packages="
  librest
  moblin-gtk-engine
  moblin-web-browser
+ moblin-menus
  mojito
  mutter
  mutter-moblin
@@ -29,7 +30,6 @@ packages="
 exception="
  moblin-cursor-theme
  moblin-icon-theme
- moblin-menus
 "
 # moblin-user-skel
 
