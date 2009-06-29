@@ -9,6 +9,7 @@ packages="
  clutter
  clutter-gst
  clutter-gtk
+ clutter-box2d
  clutter-mozembed
  clutter-imcontext
  dalston
@@ -30,8 +31,6 @@ exception="
  moblin-icon-theme
  moblin-menus
 "
-# TODO re-add clutter-box2d once upstream fixes aclocal problem
-# clutter-box2d
 # moblin-user-skel
 
 export PATH=$PATH:.
