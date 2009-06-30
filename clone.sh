@@ -39,7 +39,3 @@ done
 # exception
 mv mozilla-headless-services libmhs
 
-# TODO libccss
-# libccss has been removed from moblin git.
-#       git://git.moblin.org/libccss
-#mv libccss ccss
