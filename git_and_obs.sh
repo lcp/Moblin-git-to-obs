@@ -5,7 +5,6 @@ packages="
  bickley
  bisho
  bognor-regis
- ccss
  clutter
  clutter-gst
  clutter-gtk
@@ -31,6 +30,8 @@ exception="
  moblin-cursor-theme
  moblin-icon-theme
 "
+# TODO ccss has been removed from moblin git.
+# ccss
 # moblin-user-skel
 
 export PATH=$PATH:.

@@ -15,7 +15,6 @@ repos="
        git://git.moblin.org/dalston.git
        git://git.moblin.org/hornsey.git
        git://git.gnome.org/jana
-       git://git.moblin.org/libccss
        git://git.moblin.org/mozilla-headless-services
        git://git.moblin.org/librest.git
        git://git.moblin.org/moblin-cursor-theme.git
@@ -38,5 +37,9 @@ do
 done
 
 # exception
-mv libccss ccss
 mv mozilla-headless-services libmhs
+
+# TODO libccss
+# libccss has been removed from moblin git.
+#       git://git.moblin.org/libccss
+#mv libccss ccss
