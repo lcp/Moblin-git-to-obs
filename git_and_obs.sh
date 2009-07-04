@@ -40,6 +40,7 @@ LOG_FILE=$LOG_DIR/git_and_obs.log
 
 # NOTE: Change this variable if git2obs uses a different log path.
 GIT2OBS_LOG_DIR=/tmp
+OBS_CO_DIR="/tmp/Moblin:UI:Snapshot"
 
 # Show usage.
 show_usage (){
@@ -73,6 +74,7 @@ update_git (){
 # TODO exception handling 
 commit_git_to_obs (){
 	rm -f $GIT2OBS_LOG_DIR/git2obs.* 
+	rm -rf $OBS_CO_DIR/*
 	for pack in $packages
 	do
 		# git2obs
