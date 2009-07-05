@@ -62,7 +62,6 @@ update_git (){
 		# Grab from upstream
 		echo "== Update $git_dir ==" | tee -a $LOG_FILE
 		git pull  >> $LOG_FILE 2>&1
-		git fetch >> $LOG_FILE 2>&1
 		echo "" | tee -a $LOG_FILE
 
 		# Leave the git repo dir
