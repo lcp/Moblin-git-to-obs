@@ -74,7 +74,7 @@ update_git (){
 commit_git_to_obs (){
 	rm -f $GIT2OBS_LOG_DIR/git2obs.* 
 	rm -rf $OBS_CO_DIR/*
-	for pack in $packages
+	for pack in $commit_list
 	do
 		# git2obs
 		echo "== Commit $pack == " | tee -a $LOG_FILE
@@ -105,6 +105,8 @@ action=$1
 
 mkdir -p $LOG_DIR
 
+commit_list=$packages
+
 case $action in 
 update)
 	update_git
@@ -128,6 +130,13 @@ esac
 # TODO Send a e-mail if there is any failed package.
 if [ ! -z "$FAILED_PACKAGE" ]
 then
-	echo "Failed pakcages:" >> $LOG_FILE
-	echo $FAILED_PACKAGE >> $LOG_FILE
+	# commit again!
+	commit_list=$FAILED_PACKAGE
+	commit_git_to_obs
+
+	if [ ! -z "$FAILED_PACKAGE" ]
+	then
+		echo "Failed pakcages:" >> $LOG_FILE
+		echo $FAILED_PACKAGE >> $LOG_FILE
+	fi
 fi
