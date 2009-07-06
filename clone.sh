@@ -30,12 +30,25 @@ repos="
        git://git.moblin.org/nbtk.git
        git://github.com/ebassi/twitter-glib.git
 "
+hg_repos="
+       http://hg.mozilla.org/incubator/offscreen
+"
 
 for git_url in $repos
 do
 	git clone $git_url 
 done
 
+for hg_url in $hg_repos
+do
+	hg clone $hg_url
+done
+
 # exception
 mv mozilla-headless-services libmhs
+#for xulrunner headless
+mv offscreen xulrunner
+pushd xulrunner > /dev/null 2>&1
+hg checkout headless
+popd > /dev/null 2>&1
 
