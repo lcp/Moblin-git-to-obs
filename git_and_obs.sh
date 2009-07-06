@@ -5,6 +5,7 @@ packages="
  bickley
  bisho
  bognor-regis
+ ccss
  clutter
  clutter-gst
  clutter-gtk
@@ -30,8 +31,6 @@ exception="
  moblin-cursor-theme
  moblin-icon-theme
 "
-# TODO ccss has been removed from moblin git.
-# ccss
 # moblin-user-skel
 
 export PATH=$PATH:.
@@ -41,6 +40,7 @@ LOG_FILE=$LOG_DIR/git_and_obs.log
 
 # NOTE: Change this variable if git2obs uses a different log path.
 GIT2OBS_LOG_DIR=/tmp
+OBS_CO_DIR="/tmp/Moblin:UI:Snapshot"
 
 # Show usage.
 show_usage (){
@@ -62,7 +62,6 @@ update_git (){
 		# Grab from upstream
 		echo "== Update $git_dir ==" | tee -a $LOG_FILE
 		git pull  >> $LOG_FILE 2>&1
-		git fetch >> $LOG_FILE 2>&1
 		echo "" | tee -a $LOG_FILE
 
 		# Leave the git repo dir
@@ -74,6 +73,7 @@ update_git (){
 # TODO exception handling 
 commit_git_to_obs (){
 	rm -f $GIT2OBS_LOG_DIR/git2obs.* 
+	rm -rf $OBS_CO_DIR/*
 	for pack in $packages
 	do
 		# git2obs
