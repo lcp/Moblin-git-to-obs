@@ -74,6 +74,7 @@ update_git (){
 commit_git_to_obs (){
 	rm -f $GIT2OBS_LOG_DIR/git2obs.* 
 	rm -rf $OBS_CO_DIR/*
+	FAILED_PACKAGE=
 	for pack in $commit_list
 	do
 		# git2obs
