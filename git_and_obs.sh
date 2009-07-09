@@ -99,7 +99,7 @@ git2obs > /dev/null 2>&1
 if [ $? -ne 1 ]
 then
 	echo "git2obs not found!"
-	exit
+	exit 1
 fi
 
 action=$1
