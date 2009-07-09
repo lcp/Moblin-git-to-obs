@@ -8,11 +8,12 @@ usage(){
 INPUT=$1
 LOG_DIR=/tmp/csv_obs/csv_to_obs.$(date +%F-%H%M)
 LOG_FILE=$LOG_DIR/csv_to_obs.log
+REPO="home:gary_lin:branches:Moblin:UI"
 
 # NOTE: Change this variable if git2obs uses a different log path.
 GIT2OBS="git2obs-branch"
 GIT2OBS_LOG_DIR=/tmp
-OBS_CO_DIR="/tmp/home:gary_lin:branches:Moblin:UI"
+OBS_CO_DIR="/tmp/$REPO"
 
 run(){
 	local command=$1
