@@ -38,6 +38,7 @@ checkout_and_commit(){
 	run "pushd $package"
 	run_log "git checkout master"
 	run_log "git pull"
+	run_log "git fetch"
 	run_log "git checkout $version"
 	run "popd"
 
