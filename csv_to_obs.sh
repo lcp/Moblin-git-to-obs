@@ -1,4 +1,6 @@
 #!/bin/bash
+export LC_ALL=en_US.UTF8
+
 usage(){
 	echo "$0 <CSV_FILE>"
 	exit 1

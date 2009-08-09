@@ -1,4 +1,5 @@
 #!/bin/bash
+export LC_ALL=en_US.UTF8
 
 packages="
  anerley
